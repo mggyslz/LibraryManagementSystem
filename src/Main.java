@@ -23,8 +23,11 @@ public class Main {
             System.out.println("  4. List All Books");
             System.out.println("  5. List All Students");
             System.out.println("  6. Generate Reports");
-            System.out.println("  7. Display Student Borrowing Records");
-            System.out.println("  8. Save Library Data to File and Exit");
+            System.out.println("  7. Update Students");
+            System.out.println("  8. Update Books");
+            System.out.println("  9. Delete Data");
+            System.out.println("  10. Display Student Borrowing Records");
+            System.out.println("  11. Save Library Data to File and Exit");
             System.out.println("---------------------------------------------");
             System.out.print("Choose an option: ");
 
@@ -44,7 +47,13 @@ public class Main {
                  break;
                 case 6 : library.generateReport();
                  break;
-                case 7 : {
+                case 7: library.updateStudent();
+                 break;
+                case 8: library.updateBook();
+                 break;
+                 case 9: library.deleteEntity();
+                 break;
+                case 10 : {
                     System.out.print("Enter student ID to view records: ");
                     String studentID = scanner.nextLine();
                     for (StudentProfile student : library.students) {
@@ -54,7 +63,7 @@ public class Main {
                         }
                     }
                 }
-                 case 8: {
+                 case 11: {
                      System.out.println("Saving data to file...");
                      library.saveDataToFile(); // Save data when exiting
                      System.out.println("Exiting the Library Management System. Goodbye!");
