@@ -20,10 +20,15 @@ The Library Management System is a Java-based program made to effectively manage
    - View all books and students in the system.
 4. **Generate Reports**
    - Overview of total books, borrowed books, and registered students.
-5. **Save Data**
-   - Stores all books, students, and borrowing records to a file (`library_data.txt`).
-6. **Update Records**
+5. **Update Records**
    - Edit student and book details.
+6. **Delete Records**
+   - Delete student and book details.
+7. **Rating of Book**
+    - Rating of Books
+9. **Save Data**
+   - Stores all books, students, and borrowing records to a file (`library_data.txt`).
+
 
 ---
 
@@ -48,6 +53,8 @@ The Library Management System is a Java-based program made to effectively manage
      - List all Books or Students.
      - Generate Reports.
      - Update books or Students.
+     - Delete Records
+     - Rate Books
      - Save data to a file.
 3. **Data Persistence**:
    - All data can be saved to `library_data.txt`.
@@ -80,6 +87,12 @@ The Library Management System is a Java-based program made to effectively manage
  **Students**
 1. Correct or update the student's name.
 2. Modify the student's ID if there are changes or errors.
+   
+### **Delete Records**
+1. Delete data such as Book Records or Student Record.
+
+### **Rate Books**
+1. Rates the book from 1 to 5 stars.
 
 ### **Save Data to a File**
  **Books**
