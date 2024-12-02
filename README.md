@@ -86,9 +86,9 @@ The Library Management System is a Java-based program made to effectively manage
 1. Saves data such as Title, Author, ISBN, and Borrowed Status.
  **Students**
 2. Saves data such as Name, ID, and their borrowing history.
--Acts as a backup of the library data.
--Allows librarians to review records outside the system.
--Facilitates data sharing or auditing.
+    -Acts as a backup of the library data.
+    -Allows librarians to review records outside the system.
+    -Facilitates data sharing or auditing.
 
 ---
 
