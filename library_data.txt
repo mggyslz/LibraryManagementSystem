@@ -1,0 +1,66 @@
+Books:
+Title: Digital Fortress
+Author: Dan Brown
+ISBN: 9780312944927
+Borrowed: No
+--------------
+Title: To Kill a Mockingbird
+Author: Harper Lee
+ISBN: 9780060935467
+Borrowed: No
+--------------
+Title: 1984
+Author: George Orwell
+ISBN: 9780451524935
+Borrowed: No
+--------------
+Title: Harry Potter
+Author: J.K. Rowling
+ISBN: 9780677524935
+Borrowed: No
+--------------
+Title: A Separate Peace
+Author: John Knowles
+ISBN: 97804578824935
+Borrowed: No
+--------------
+Title: 48 Laws Of Power
+Author: Robert Greene
+ISBN: 9780788524935
+Borrowed: No
+--------------
+Title: cholonga
+Author: John Michael Longa
+ISBN: 6969
+Borrowed: No
+--------------
+
+Students:
+Name: Aldrich Francisco
+ID: S001
+Borrowing Records:
+--------------
+Name: Mark Baltazar
+ID: S002
+Borrowing Records:
+--------------
+Name: Miggz Cea
+ID: S003
+Borrowing Records:
+--------------
+Name: Lebron James
+ID: S004
+Borrowing Records:
+--------------
+Name: Winnie The Pooh
+ID: S005
+Borrowing Records:
+--------------
+Name: Peter Parker
+ID: S006
+Borrowing Records:
+--------------
+Name: pisot
+ID: 2341
+Borrowing Records:
+--------------
