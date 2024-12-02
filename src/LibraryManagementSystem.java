@@ -11,7 +11,6 @@ import java.io.IOException;
     private Scanner scanner = new Scanner(System.in);
     
     public LibraryManagementSystem() {
-        // Add predefined books and predefined Students
         books.add(new EBook("Digital Fortress", "Dan Brown", "9780312944927", "5MB"));
         books.add(new PhysicalBook("To Kill a Mockingbird", "Harper Lee", "9780060935467", 324));
         books.add(new PhysicalBook("1984", "George Orwell", "9780451524935", 328));
@@ -26,7 +25,7 @@ import java.io.IOException;
         students.add(new StudentProfile("Winnie The Pooh", "S005"));
         students.add(new StudentProfile("Peter Parker", "S006"));
     }
-    // Method to add a student profile
+
     public void addStudent() {
         System.out.print("Enter student name   : ");
         String name = scanner.nextLine();
@@ -36,12 +35,43 @@ import java.io.IOException;
         students.add(new StudentProfile(name, id));
         System.out.println("Student added successfully!");
     }
+    public void updateStudent() {
+    System.out.print("Enter the student ID to update: ");
+    String studentID = scanner.nextLine();
 
-    // Method to add a book
+    // Find the student by ID
+    StudentProfile studentToUpdate = null;
+    for (StudentProfile student : students) {
+        if (student.getStudentID().equalsIgnoreCase(studentID)) {
+            studentToUpdate = student;
+            break;
+        }
+    }
+
+    if (studentToUpdate == null) {
+        System.out.println("Student not found.");
+        return;
+    }
+
+    System.out.print("Enter new name for the student (leave blank to keep current name): ");
+    String newName = scanner.nextLine();
+    if (!newName.isBlank()) {
+        studentToUpdate.setStudentName(newName); 
+    }
+
+    System.out.print("Enter new ID for the student (leave blank to keep current ID): ");
+    String newID = scanner.nextLine();
+    if (!newID.isBlank()) {
+        studentToUpdate.setStudentID(newID);
+    }
+
+    System.out.println("Student updated successfully!");
+}
+
     public void addBook() {
         System.out.println("Choose book type to add: 1. E-Book 2. Physical Book");
         int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); 
 
         System.out.print("Enter title   : ");
         String title = scanner.nextLine();
@@ -61,14 +91,53 @@ import java.io.IOException;
         }
         System.out.println("Book added successfully!");
     }
+    
+    public void updateBook() {
+    System.out.print("Enter the title of the book to update: ");
+    String bookTitle = scanner.nextLine();
 
-    // Method to borrow a book for a student
+
+    Book bookToUpdate = null;
+    for (Book book : books) {
+        if (book.getTitle().equalsIgnoreCase(bookTitle)) {
+            bookToUpdate = book;
+            break;
+        }
+    }
+
+    if (bookToUpdate == null) {
+        System.out.println("Book not found.");
+        return;
+    }
+
+ 
+    System.out.print("Enter new title for the book (leave blank to keep current title): ");
+    String newTitle = scanner.nextLine();
+    if (!newTitle.isBlank()) {
+        bookToUpdate.setTitle(newTitle);
+    }
+
+    System.out.print("Enter new author for the book (leave blank to keep current author): ");
+    String newAuthor = scanner.nextLine();
+    if (!newAuthor.isBlank()) {
+        bookToUpdate.setAuthor(newAuthor); 
+    }
+
+    System.out.print("Is the book borrowed? (yes/no, leave blank to keep current status): ");
+    String isBorrowed = scanner.nextLine();
+    if (!isBorrowed.isBlank()) {
+        bookToUpdate.setBorrowed(isBorrowed.equalsIgnoreCase("yes"));
+    }
+
+    System.out.println("Book updated successfully!");
+}
+
+
     public void borrowBook() {
         System.out.print("Enter student ID   : ");
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
         String studentID = scanner.nextLine();
 
-        // Find the student
         StudentProfile student = null;
         for (StudentProfile s : students) {
             if (s.getStudentID().equalsIgnoreCase(studentID)) {
@@ -101,8 +170,7 @@ import java.io.IOException;
 
         System.out.print("Enter borrow date (e.g., YYYY-MM-DD)  : ");
         String borrowDate = scanner.nextLine();
-
-        // Record the borrowing and mark the book as borrowed
+        
         bookToBorrow.setBorrowed(true);
         BorrowingRecord record = new BorrowingRecord(title, borrowDate, null);
         student.addBorrowingRecord(record);
@@ -126,29 +194,77 @@ import java.io.IOException;
         }
         
     }
-      public void listAllStudents() {
-    if (students.isEmpty()) {
+    public void listAllStudents() {
+      if (students.isEmpty()) {
         System.out.println("No students in the system.");
         return;
-    }
-    System.out.println("Listing all students:");
-    for (StudentProfile student : students) {
+      }
+       System.out.println("Listing all students:");
+        for (StudentProfile student : students) {
         System.out.println("- " + student.getStudentName() + " (ID: " + student.getStudentID() + ")");
      }
    }
       
-      public void generateReport() {
-    int totalBooks = books.size();
-    int totalBorrowedBooks = (int) books.stream().filter(Book::isBorrowed).count();
-    int totalStudents = students.size();
-    System.out.println("Library Report:");
-    System.out.println("Total Books          : " + totalBooks);
-    System.out.println("Total Borrowed Books : " + totalBorrowedBooks);
-    System.out.println("Total Students       : " + totalStudents);
+    public void generateReport() {
+     int totalBooks = books.size();
+     int totalBorrowedBooks = (int) books.stream().filter(Book::isBorrowed).count();
+     int totalStudents = students.size();
+      System.out.println("Library Report:");
+      System.out.println("Total Books          : " + totalBooks);
+      System.out.println("Total Borrowed Books : " + totalBorrowedBooks);
+      System.out.println("Total Students       : " + totalStudents);
     }
       
-      public void saveDataToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("library_data.txt"))) {
+    public void deleteEntity() {
+     System.out.println("What would you like to delete?");
+     System.out.println("1. Student");
+     System.out.println("2. Book");
+     System.out.print("Enter your choice: ");
+      int choice = scanner.nextInt();
+       scanner.nextLine(); 
+        switch (choice) {
+            case 1 : {
+                System.out.print("Enter the ID of the student to delete: ");
+                String studentID = scanner.nextLine();
+                StudentProfile studentToRemove = null;
+                for (StudentProfile student : students) {
+                    if (student.getStudentID().equalsIgnoreCase(studentID)) {
+                        studentToRemove = student;
+                        break;
+                    }
+                }       if (studentToRemove != null) {
+                    students.remove(studentToRemove);
+                    System.out.println("Student with ID " + studentID + " has been deleted successfully.");
+                } else {
+                    System.out.println("No student found with ID " + studentID + ".");
+                }
+            }
+            case 2 : {
+                System.out.print("Enter the title of the book to delete: ");
+                String bookTitle = scanner.nextLine();
+                Book bookToRemove = null;
+                for (Book book : books) {
+                    if (book.getTitle().equalsIgnoreCase(bookTitle)) {
+                        bookToRemove = book;
+                        break;
+                    }
+                }       if (bookToRemove != null) {
+                    if (bookToRemove.isBorrowed()) {
+                        System.out.println("Cannot delete a borrowed book.");
+                    } else {
+                        books.remove(bookToRemove);
+                        System.out.println("Book with title \"" + bookTitle + "\" has been deleted successfully.");
+                    }
+                } else {
+                    System.out.println("No book found with title \"" + bookTitle + "\".");
+                }
+            }
+            default : System.out.println("Invalid choice. Please select 1 for Student or 2 for Book.");
+        }
+}
+        
+    public void saveDataToFile() {
+       try (BufferedWriter writer = new BufferedWriter(new FileWriter("library_data.txt"))) {
 
             // Write books to file
             writer.write("Books:\n");
@@ -159,14 +275,11 @@ import java.io.IOException;
                 writer.write("Borrowed: " + (book.isBorrowed() ? "Yes" : "No") + "\n");
                 writer.write("--------------\n");
             }
-
-            // Write students to file
             writer.write("\nStudents:\n");
             for (StudentProfile student : students) {
                 writer.write("Name: " + student.getStudentName() + "\n");
                 writer.write("ID: " + student.getStudentID() + "\n");
 
-                // Write borrowing records for each student
                 writer.write("Borrowing Records:\n");
                 for (BorrowingRecord record : student.getBorrowingRecords()) {
                     writer.write("Book: " + record.getBookTitle() + ", Borrowed on: " + record.getBorrowDate() +
